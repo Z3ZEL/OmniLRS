@@ -28,7 +28,7 @@ from src.configurations.procedural_terrain_confs import (
     BaseTerrainGeneratorConf,
     DeformationEngineConf,
 )
-from src.configurations.rendering_confs import FlaresConf, RendererConf, MotionBlurConf, ChromaticAberrationsConf
+from src.configurations.rendering_confs import FlaresConf, RendererConf, MotionBlurConf, ChromaticAberrationsConf, LightingConf
 from src.configurations.environments import LunalabConf, LunaryardConf, LargeScaleTerrainConf
 from src.configurations.auto_labeling_confs import AutoLabelingConf, CameraConf
 from src.configurations.stellar_engine_confs import StellarEngineConf, SunConf
@@ -62,6 +62,7 @@ configFactory.registerConfig("chromatic_aberrations", ChromaticAberrationsConf)
 configFactory.registerConfig("motion_blur", MotionBlurConf)
 configFactory.registerConfig("lens_flares", FlaresConf)
 configFactory.registerConfig("renderer", RendererConf)
+configFactory.registerConfig("lighting", LightingConf)
 # Environment Configs
 configFactory.registerConfig("lunalab_settings", LunalabConf)
 configFactory.registerConfig("lunaryard_settings", LunaryardConf)

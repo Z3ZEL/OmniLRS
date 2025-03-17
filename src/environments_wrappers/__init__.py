@@ -10,7 +10,7 @@ __status__ = "development"
 def startSim(cfg: dict):
     from omni.isaac.kit import SimulationApp
     import omni
-    from src.environments.rendering import set_lens_flares, set_chromatic_aberrations, set_motion_blur
+    from src.environments.rendering import set_lens_flares, set_chromatic_aberrations, set_motion_blur, set_lighting
 
     class SimulationApp_wait(SimulationApp):
         def __init__(self, launch_config: dict = None, experience: str = "") -> None:
@@ -92,6 +92,7 @@ def startSim(cfg: dict):
     set_lens_flares(cfg)
     set_motion_blur(cfg)
     set_chromatic_aberrations(cfg)
+    set_lighting(cfg)
 
     # Starts the ROS2 extension. Allows to import ROS2 related things.
     if cfg["mode"]["name"] == "ROS2":

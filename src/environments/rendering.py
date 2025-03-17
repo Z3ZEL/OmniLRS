@@ -10,13 +10,12 @@ from typing import Tuple
 import carb
 import omni
 
-from src.configurations.rendering_confs import FlaresConf, ChromaticAberrationsConf, MotionBlurConf
+from src.configurations.rendering_confs import FlaresConf, ChromaticAberrationsConf, MotionBlurConf, LightingConf
 
 
 # ==============================================================================
 # Renderer Control
 # ==============================================================================
-
 
 def enable_RTX_real_time(**kwargs) -> None:
     """
@@ -338,3 +337,38 @@ def set_motion_blur_num_samples(value: int = 8) -> None:
 
     settings = carb.settings.get_settings()
     settings.set("/rtx/post/motionblur/numSamples", value)
+
+
+# ==============================================================================
+# Lighting Controls
+# ==============================================================================
+def set_lighting(cfg):
+    """
+    Sets the lighting settings.
+    """
+
+    if "lighting" in cfg["rendering"].keys():
+        lighting_cfg = cfg["rendering"]["lighting"]
+        apply_lighting(lighting_cfg)
+
+def apply_lighting(settings: LightingConf = None) -> None:
+    """
+    Applies the lighting settings.
+
+    Args:
+        settings (LightingConf): The settings of the lighting.
+    """
+
+    if settings is not None:
+        set_shadow_bias(settings.shadow_bias)
+
+def set_shadow_bias(value: float = 0.001) -> None:
+    """
+    Sets the shadow bias.
+
+    Args:
+        value (float): The shadow bias.
+    """
+
+    settings = carb.settings.get_settings()
+    settings.set("/rtx/raytracing/shadowBias", value)

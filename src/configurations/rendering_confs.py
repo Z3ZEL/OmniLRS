@@ -109,3 +109,11 @@ class RendererConf:
             "PathTracing",
             "RayTracedLighting",
         ], "renderer must be PATH, PathTracing or RayTracedLighting"
+
+@dataclasses.dataclass
+class LightingConf:
+    shadow_bias: float = dataclasses.field(default_factory=float)
+
+    def __post_init__(self):
+        assert type(self.shadow_bias) is float, "shadow_bias must be a float"
+        assert self.shadow_bias >= 0, "shadow_bias must be greater or equal to 0"
